@@ -1,0 +1,150 @@
+<html>
+<head>
+<style>
+.h2{
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
+    color: blue;
+}
+.title{
+    font-size: 12px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: seagreen;
+    
+}
+</style>
+<title><Desafio 1</title>
+</head>
+<body>
+<span class="title"><h2>Desafio: 1</h2></span>
+<br><br>
+<div id="app">    
+    <button onclick="enderecoCliente(endereco)">Exerc 1</button>
+</div>
+<br>
+<div>
+    <button onclick="pares(2,10)">Exerc 2</button>
+</div>
+<br>
+<div>
+    <button onclick="temHabilidade(habilidades)">Exerc 3</button>
+</div>
+<br>
+<div>
+    <button onclick="mostraAlerta()">clique</button>
+</div>
+<br>
+<div>
+    Busca: <input type="search" name="busca" id="busca" value="Passe o mouse Aqui!" onmouseover="mostraAvisoBusca()"/>
+</div>
+<br>
+<div>
+    Texto: <input type="text" name="textoDeBusca" id="textoDeBusca" value="" class="cadastro" onkeydown="mostraAlertaTextoBusca()"/>
+</div>
+<br>
+<div id="cadastro">
+    Nome: <input type="text" name="nome" id="nome" class="cadastro"/>    
+    <button class="botao">Adicione</button>
+</div>
+<br>
+<div style="display: none;">
+    Nome: <input type="text" name="nomeHidden" id="nomeHidden" />
+</div>
+
+
+<script>
+var endereco = {
+ rua: "Rua dos pinheiros",
+ numero: 1293,
+ bairro: "Centro",
+ cidade: "São Paulo",
+ uf: "SP"
+};
+
+var habilidades = ["JavaScript", "ReactJS", "React Native", "C#", "Java"];
+
+function enderecoCliente(endereco){    
+    alert("O usuário mora em "+endereco.cidade+" / "+endereco.uf+", no bairro "+endereco.bairro+", na rua "+endereco.rua+" com nº "+endereco.numero);
+}
+
+function pares(aux, aux2){
+    var pares = [] ;    
+    while(aux <= aux2 ){        
+        if(aux % 2 == 0){
+            pares.push(aux);
+        }
+        aux++ 
+    }
+    alert("Os numeros Pares do Range são: "+pares);
+}
+
+function temHabilidade(skills){    
+    for(i = 0; i < skills.length; i++){
+      if(skills.indexOf("Oracle") > -1){
+            alert("true");
+            return true;
+        }else{
+            alert("false");
+            return false;
+        }
+    }
+}
+function mostraAlerta(){
+    alert("O Botão foi clicado!");
+}
+
+function mostraAvisoBusca(){
+    alert("Buscador: ");
+}
+
+function mostraAlertaTextoBusca(){
+    alert("Escreva o texto para buscar!");
+}
+
+//criando a variavel com o valor do id do campo nome.
+var inputElement = document.getElementById('nome');
+console.log(inputElement);
+//criando a variavel com o valor dos input, retorna uma collection e caso hajam varias inputs na tela precisa saber qual é o elemento especifico que vc quer.
+var inputElementByTag = document.getElementsByTagName('input');
+console.log(inputElementByTag);
+console.log("Pegando somente 1 item por TagName:");
+var inputElementByTagItem = document.getElementsByTagName('input')[2];
+console.log(inputElementByTagItem);
+//criando a variavel com o valor dos elementos que usam a Class de estilos cadastro, retorna uma collection, precisa saber qual o elemento que vc quer.
+var inputElementByClassName = document.getElementsByClassName('cadastro');
+console.log(inputElementByClassName);
+console.log("Pegando somente 1 item por ClassName:");
+var inputElementByClassNameItem = document.getElementsByClassName('cadastro')[1];
+console.log(inputElementByClassNameItem);
+
+/** Criando uma variavel com o elemento input da tela, para cessar o elemento estou usando o QuerySelector onde é possivel navegar pelos elementos até o meu especifico, 
+* o Query Selector retorna somente 1 elemento, no caso o primeiro elemento encontrado e não uma lista como outros exemplos que vimos, porém, se precisamos que retorne a
+* Collection dos elementos utilizamos a função "QuerySelectorAll", segue exemplo abaixo.
+*/
+var inputByQuerySelector = document.querySelector('body div#cadastro input');
+console.log("Pegando somente item através do QuerySelector:");
+console.log(inputByQuerySelector);
+var inputByQuerySelectorSimply = document.querySelector('div#cadastro input');
+console.log("Simplificando: ");
+console.log(inputByQuerySelectorSimply);
+var inputByQuerySelectorSimply2 = document.querySelector('input[name=nome]');
+console.log("Simplificando 02: ");
+console.log(inputByQuerySelectorSimply2);
+
+//Exemplo QuerySelector All, retorna Coleção
+var inputByQuerySelectorAll = document.querySelectorAll('input');
+console.log("Retorna Collection: ");
+console.log(inputByQuerySelectorAll);
+
+
+var inputElement = document.querySelector('input[name=nome]');
+var btnElement = document.querySelector('button.botao');
+
+btnElement.onclick = function(){
+    var text = inputElement.value;
+    alert(text);    
+}
+
+
+</script>
+</body>
+</html>
