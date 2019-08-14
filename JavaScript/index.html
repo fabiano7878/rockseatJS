@@ -50,6 +50,10 @@
     Nome: <input type="text" name="nomeHidden" id="nomeHidden" />
 </div>
 
+<div id="paraLink">
+    <input type="password" name="senha" id="senha" class="senha">
+</div>
+
 
 <script>
 var endereco = {
@@ -144,6 +148,58 @@ btnElement.onclick = function(){
     alert(text);    
 }
 
+
+var elementLink = document.createElement('a');
+elementLink.setAttribute('href', 'http://rocketseat.com.br');
+elementLink.setAttribute('title', 'site da RocketSeat');
+
+
+var textElemntLink = document.createTextNode('rocketseat');
+elementLink.appendChild(textElemntLink);
+
+var containerLink = document.querySelector('#paraLink');
+containerLink.appendChild(elementLink);
+
+var elementBR = document.createElement('BR');
+//console.log(elementBR);
+var elementBR2 = document.createElement('BR');
+/**
+* Após entendi que não adianta replicar a variavel que elá só irá adicionar 1 vez o o elemento
+* porém há possibilidade de criar um looping e incrementar a creação do elemento e da variavel, desta froma
+* seria possivel que gerasse mais vezes o elemento com o mesmo nome.
+*/
+containerLink.appendChild(elementBR);
+containerLink.appendChild(elementBR2);
+
+var elementoCampoNome = document.createElement('INPUT');
+elementoCampoNome.setAttribute('type','text');
+elementoCampoNome.setAttribute('name','campoNome');
+elementoCampoNome.setAttribute('id','campoNome');
+
+containerLink.appendChild(elementoCampoNome);
+
+/** No exemplo abaixo primeiramente criei a variavel para pegar pelo id do elemento, já no segundo exemplo
+* estou buscando o elemento pelo tipo e pela class.
+*/ 
+//var  removeInputSenha = document.querySelector('#senha');
+var  removeInputSenha = document.querySelector('input.senha');
+containerLink.removeChild(removeInputSenha);
+
+
+var btnElementoRocket = document.createElement('button');
+var txtbtnElementoRocket= document.createTextNode('enviar');
+btnElementoRocket.setAttribute('nome', 'msgRocket');
+btnElementoRocket.setAttribute('id', 'msgRocket');
+btnElementoRocket.setAttribute('title', 'Envia mensagem para RocketSeat');
+btnElementoRocket.appendChild(txtbtnElementoRocket);
+
+
+btnElementoRocket.onclick = function(){
+    var text = document.querySelector('#campoNome').value;
+    alert(text);
+}
+
+containerLink.appendChild(btnElementoRocket);
 
 </script>
 </body>
