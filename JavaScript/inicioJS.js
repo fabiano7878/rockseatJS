@@ -136,7 +136,7 @@ var endereco = {
    btnElementoRocket.appendChild(txtbtnElementoRocket);
    
    
-   btnElementoRocket.onclick = function(){
+   btnElementoRocket.onclick = function(){       
        var text = document.querySelector('#campoNome').value;
        alert(text);
    }
