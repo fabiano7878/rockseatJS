@@ -6,6 +6,7 @@ var listaTodos = document.createElement('ul');
 //var lEstudarJs = document.createElement('li');
 //var lAcessoComunidade = document.createElement('li');
 
+
 var campoNovaLinha = document.createElement('input');
 var btnAdicionaLinha = document.createElement('button');
 var txtBtnAdicionaLinha = document.createTextNode('adicionar');
@@ -32,6 +33,7 @@ btnAdicionaLinha.appendChild(txtBtnAdicionaLinha);
 containerElement.appendChild(listaTodos);
 containerElement.appendChild(campoNovaLinha);
 containerElement.appendChild(btnAdicionaLinha);
+
 
 //Linha "Fazer Café" tratando a linha do Café, adicionando o link "excluir".
 /** function linhaFazerCafe() {
@@ -83,7 +85,9 @@ btnAdicionaLinha.onclick = function(){
     }        
     for(todo of todos){
       console.log('T: '+todo);
-        novaLinha();
+        var addLinha = document.createElement('li');
+        novaLinha(addLinha, todo);
+        containerElement.appendChild(addLinha);
     }
 }
 function atualizaLista(nome, todos) {    
@@ -98,4 +102,19 @@ function atualizaLista(nome, todos) {
     }    
 }
 
+function novaLinha(addLinha, todo){
+    
+    addLinha.setAttribute('id', 'addlinha');
+    addLinha.setAttribute('name', 'addlinha');
+    var txtaddlinha = document.createTextNode(todo+" - ");
+    var linkaddlinha = document.createElement('a');
+    linkaddlinha.setAttribute('href', '#');
+    var txtExcluiraddlinha = document.createTextNode('excluir');
+    linkaddlinha.appendChild(txtExcluiraddlinha);
+    addLinha.setAttribute('id', 'cafe');
+    addLinha.appendChild(txtaddlinha);
+    addLinha.appendChild(linkaddlinha);
+    var elementBR2 = document.createElement('BR');
+    addLinha.appendChild(elementBR2);
+}
 
