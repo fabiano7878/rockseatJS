@@ -1,6 +1,9 @@
 var containerElement = document.querySelector('.todos');
 
 var listaTodos = document.createElement('ul');
+listaTodos.setAttribute('id', 'listaTodos');
+listaTodos.setAttribute('name', 'listaTodos');
+
 
 //var lFazerCafe = document.createElement('li');
 //var lEstudarJs = document.createElement('li');
@@ -30,7 +33,7 @@ btnAdicionaLinha.appendChild(txtBtnAdicionaLinha);
 //listaTodos.appendChild(lAcessoComunidade);
 
 //Adicionando a Lista na Div 
-containerElement.appendChild(listaTodos);
+//containerElement.appendChild(listaTodos);
 containerElement.appendChild(campoNovaLinha);
 containerElement.appendChild(btnAdicionaLinha);
 
@@ -72,24 +75,23 @@ containerElement.appendChild(btnAdicionaLinha);
 }*/
 
 
-
+var todos = JSON.parse(localStorage.getItem('lista_nomes')) || [];
 btnAdicionaLinha.onclick = function(){                
     //var todos = ['Fazer café', 'Estudar','Comunidade'];
-    var todos = [];
     var pnovaLinha = document.querySelector('#nomelinha').value;
 
     if(pnovaLinha === null || pnovaLinha === ''){
         alert('Adicione o nome da linha!');
     }else{
-        atualizaLista(pnovaLinha, todos);
-    }        
-    for(todo of todos){
-      console.log('T: '+todo);
-        var addLinha = document.createElement('li');
-        novaLinha(addLinha, todo);
-        containerElement.appendChild(addLinha);
-    }
+        /** 
+        atualizaLista(pnovaLinha, todos); */
+        todos.push(pnovaLinha);        
+        nomelinha.value = ''
+        renderTodo();
+        salvarNoStorage();
+    }            
 }
+/**
 function atualizaLista(nome, todos) {    
      for(i = 0; i <= todos.length; i++){         
         if(todos.length == 0){            
@@ -100,21 +102,44 @@ function atualizaLista(nome, todos) {
            break; 
         }               
     }    
-}
+}  */
 
-function novaLinha(addLinha, todo){
+
+function novaLinha(todo){
     
-    addLinha.setAttribute('id', 'addlinha');
-    addLinha.setAttribute('name', 'addlinha');
+    var addLinha = document.createElement('li');
+    addLinha.setAttribute('id', todos.indexOf(todo));
+    addLinha.setAttribute('name', todos.indexOf(todo));
     var txtaddlinha = document.createTextNode(todo+" - ");
     var linkaddlinha = document.createElement('a');
     linkaddlinha.setAttribute('href', '#');
+    var pos = todos.indexOf(todo);
+    linkaddlinha.setAttribute('onclick', 'excluirLinha('+pos+')');
     var txtExcluiraddlinha = document.createTextNode('excluir');
-    linkaddlinha.appendChild(txtExcluiraddlinha);
-    addLinha.setAttribute('id', 'cafe');
+    linkaddlinha.appendChild(txtExcluiraddlinha);    
     addLinha.appendChild(txtaddlinha);
     addLinha.appendChild(linkaddlinha);
     var elementBR2 = document.createElement('BR');
-    addLinha.appendChild(elementBR2);
+    addLinha.appendChild(elementBR2); 
+    listaTodos.appendChild(addLinha);
+    containerElement.appendChild(listaTodos);   
 }
 
+
+function excluirLinha(pos){
+    todos.splice(pos, 1);
+    renderTodo();
+    salvarNoStorage();
+}
+
+function renderTodo(){
+    listaTodos.innerHTML = '';
+    for(todo of todos){
+        console.log('T: '+todo);          
+          novaLinha(todo);
+          //containerElement.appendChild(addLinha);
+      }   
+}
+function salvarNoStorage(){
+    localStorage.setItem('lista_nomes', JSON.stringify(todos));
+}
