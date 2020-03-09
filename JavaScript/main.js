@@ -47,34 +47,52 @@ minhaPromise()
 var campoValidaIdade = document.createElement('input');
 var btnValidaIdade = document.createElement('button');
 var txtBtnValidaIdade = document.createTextNode('Idade');
+var elementBR = document.createElement('br');
+var elementBR1 = document.createElement('br');
+var elementBR2 = document.createElement('br');
+
 
 //Atribuindo valores para o elemento Campo de Texto
 campoValidaIdade.setAttribute('type','text');
 campoValidaIdade.setAttribute('id', 'validaIdade');
 campoValidaIdade.setAttribute('name', 'validaIdade');
-campoValidaIdade.setAttribute('placeholder','Validar Idade Usuário');
+campoValidaIdade.setAttribute('placeholder','Validar Idade Usuario');
 
 //atribuindo informações ao botão.
 btnValidaIdade.setAttribute('id','validaIdade');
 btnValidaIdade.appendChild(txtBtnValidaIdade);
 
 //adicionando o botão e o campo de texto na TextTrackList.
+containerElement.appendChild(elementBR);
+containerElement.appendChild(elementBR1);
+containerElement.appendChild(elementBR2);
 containerElement.appendChild(campoValidaIdade);
 containerElement.appendChild(btnValidaIdade);
 
 
-btnValidaIdade.onclick = function(idade){
+btnValidaIdade.onclick = function(){
+    var idade = document.querySelector('#validaIdade').value;
+    if(idade != '' && idade != undefined){
+        
     var promiseValidarIdade = function(){    
-        return new Promise(function(resolve, reject){
-            
+        return new Promise(function(resolve, reject){               
+            if(idade >= 18){
+                resolve('Maior de Idade!');
+            }else{
+                reject("Menor de Idade! sua idade deve ser igual ou maior que 18!");
+            } 
+           
+         });
+        }   
+    
+        promiseValidarIdade()
+        .then(function(reponse){
+            console.log(reponse);
+        })
+        .catch(function(error){
+            console.warn(error);
         });
-    }   
+    }else{
+    alert('Digite a idade para validacao!');
+ }
 }
-
-promiseValidarIdade()
-    .then(function(reponse){
-        console.log(reponse);
-    })
-    .catch(function(error){
-        console.warn(error);
-    });
