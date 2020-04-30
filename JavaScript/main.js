@@ -84,6 +84,17 @@ containerElement.appendChild(btnValidaIdade);
 //pega valor do item selecionado
 //document.querySelector('option:checked').value;
 
+/**
+ * verifica se o select box foi alterado.
+ *  
+$('select').on('change', function (e) {
+    var optionSelected = $("option:selected", this);
+    var valueSelected = this.value;
+    
+});
+
+*/
+
 btnValidaIdade.onclick = function(){
     var idade = document.querySelector('#validaIdade').value;
     if(idade != '' && idade != undefined){
