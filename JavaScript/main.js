@@ -69,6 +69,20 @@ containerElement.appendChild(elementBR2);
 containerElement.appendChild(campoValidaIdade);
 containerElement.appendChild(btnValidaIdade);
 
+/**
+ * exemplo pegar select e options
+*/
+//Pega texto de todos os itens do select
+//document.querySelector('select[name=selectedValues]').innerText
+
+//pega valor do item selecionado ou seja o indice do options
+//document.querySelector('select[name=selectedValues]').value
+
+//Pega texto do item selecionado
+//document.querySelector('option:checked').innerText;
+
+//pega valor do item selecionado
+//document.querySelector('option:checked').value;
 
 btnValidaIdade.onclick = function(){
     var idade = document.querySelector('#validaIdade').value;
